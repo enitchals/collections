@@ -7,21 +7,25 @@ const dummyData = {
   id: 1,
   rows: [
     {
+      id: 1,
       theme: 'A',
       squares: ['1a', '2a', '3a', '4a'],
       solved: false
     },
     {
+      id: 2,
       theme: 'B',
       squares: ['1b', '2b', '3b', '4b'],
       solved: false
     },
     {
+      id: 3,
       theme: 'C',
       squares: ['1c', '2c', '3c', '4c'],
       solved: false
     },
     {
+      id: 4,
       theme: 'D',
       squares: ['1d', '2d', '3d', '4d'],
       solved: false
@@ -58,10 +62,9 @@ const Board = () => {
   const [selectedSquares, setSelectedSquares] = useState(['1a', '2a', '3a', '4a'])
   const [guesses, setGuesses] = useState([]);
   const [randomOrder, setRandomOrder] = useState(getRandomOrder(16))
+  const [solvedRows, setSolvedRows] = useState([])
 
   const unsolvedSquares = getUnsolvedSquares(boardData);
-
-  const solvedRows = boardData.rows.filter(row => row.solved);
 
   const setCategorySolved = (categoryIndex) => {
     const newData = boardData;
@@ -85,33 +88,39 @@ const Board = () => {
   }
 
   const submitGuessClickHandler = () => {
+    let maxCollection = 0;
     const index = boardData.rows.findIndex(row => {
-      return (
-        row.squares.includes(selectedSquares[0]) &&
-        row.squares.includes(selectedSquares[1]) &&
-        row.squares.includes(selectedSquares[2]) &&
-        row.squares.includes(selectedSquares[3])
-      )
+      let collection = 0;
+      if (row.squares.includes(selectedSquares[0])) collection++;
+      if (row.squares.includes(selectedSquares[1])) collection++;
+      if (row.squares.includes(selectedSquares[2])) collection++;
+      if (row.squares.includes(selectedSquares[3])) collection++;
+      if (collection === 4) return true;
+      if (collection > maxCollection) maxCollection = collection;
     })
     if (index !== -1) {
       setCategorySolved(index);
       setSelectedSquares([]);
       setGuesses(guesses.concat([selectedSquares]));
       setRandomOrder(getRandomOrder(randomOrder.length-4));
+      setSolvedRows(solvedRows.concat(boardData.rows[index]))
     } else {
       setGuesses(guesses.concat([selectedSquares]));
+      window.alert(`You got ${maxCollection} correct!`)
     }
     console.log(boardData)
   }
 
+  if (guesses.length - solvedRows.length > 4) window.alert('game over!')
+
   return (
     <>
       <div className='button-row'>
-        <button onClick={submitGuessClickHandler}>submit guess</button>
+        <button onClick={submitGuessClickHandler}>submit</button>
         <button onClick={() => setRandomOrder(getRandomOrder(randomOrder.length))}>shuffle</button>
       </div>
       <div className='Board'>
-        {solvedRows.map(row => <SolvedRow row={row}/>)}
+        {solvedRows.map(row => <SolvedRow key={row} row={row}/>)}
         {randomOrder.map(index => {
           const square = unsolvedSquares[index]
           return <Square text={square} key={square} clickHandler={() => squareClickHandler(square)} selected={selectedSquares.includes(square)}/>

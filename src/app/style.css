@@ -2,20 +2,29 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family:Verdana, Geneva, Tahoma, sans-serif
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  background-color: aliceblue;
 }
 
 h1{
-  color: teal;
+  color: black;
   font-size: 42px;
   margin-bottom: 0px;
 }
 
 button {
   border: 2px solid black;
+  background-color: lightslategray;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
   font-size: 22px;
   margin: 20px;
   padding: 5px 10px;
+}
+
+button:hover {
+  background-color: orange;
 }
 
 .button-row {
@@ -37,6 +46,8 @@ button {
   padding: 10px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-content: space-around;
   flex-wrap: wrap;
   background-color: lightslategray;
 }
@@ -48,15 +59,25 @@ button {
   border: 2px solid black;
   border-radius: 5px;
   background-color: white;
-  color: teal;
+  color: lightslategray;
   font-size: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+.Square:hover {
+  background-color: green;
+  color: white;
+}
+
 .selected-square {
-  background-color: teal;
+  background-color: green;
+  color: white;
+}
+
+.selected-square:hover {
+  background-color: green;
   color: white;
 }
 
@@ -70,8 +91,23 @@ button {
   flex-direction: column;
   justify-content: center;
   padding-left: 40px;
-  background-color: lightseagreen;
   color: white;
+}
+
+.row-1 {
+  background-color: crimson;
+}
+
+.row-2 {
+  background-color: orange;
+}
+
+.row-3 {
+  background-color: dodgerblue;
+}
+
+.row-4 {
+  background-color: indigo;
 }
 
 .solved-theme {
@@ -81,4 +117,25 @@ button {
 
 .solved-words {
   font-size: 18px;
+}
+
+@media (max-width: 620px){
+
+  .Square{
+    width: 18vw;
+    height: 18vw;
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .Board {
+    width: 90vw;
+    height: 90vw;
+  }
+
+  .SolvedRow {
+    width: 85vw;
+    height: 18vh;
+  }
+
 }
