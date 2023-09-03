@@ -6,6 +6,7 @@ import Board from './Board';
 const App = () => {
   return (
     <div className='App'>
+      <h1>Collections</h1>
       <Board/>
     </div>
   )

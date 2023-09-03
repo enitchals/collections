@@ -6,8 +6,8 @@ const SolvedRow = ({row}) => {
   const {squares, theme} = row;
   return (
     <div className='SolvedRow'>
-      <div>{theme}</div>
-      <div>{squares[0]}, {squares[1]}, {squares[2]}, {squares[3]}</div>
+      <div className='solved-theme'>{theme}</div>
+      <div className='solved-words'>{squares[0]}, {squares[1]}, {squares[2]}, {squares[3]}</div>
     </div>
   )
 }

@@ -4108,7 +4108,7 @@ __webpack_require__.r(__webpack_exports__);
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "App"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Board__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Collections"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Board__WEBPACK_IMPORTED_MODULE_2__["default"], null));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (App);
 
@@ -4185,7 +4185,7 @@ var Board = function Board() {
     _useState2 = _slicedToArray(_useState, 2),
     boardData = _useState2[0],
     setBoardData = _useState2[1];
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(['1a', '2a', '3a', '4a']),
     _useState4 = _slicedToArray(_useState3, 2),
     selectedSquares = _useState4[0],
     setSelectedSquares = _useState4[1];
@@ -4235,6 +4235,14 @@ var Board = function Board() {
     console.log(boardData);
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "button-row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: submitGuessClickHandler
+  }, "submit guess"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: function onClick() {
+      return setRandomOrder(getRandomOrder(randomOrder.length));
+    }
+  }, "shuffle")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "Board"
   }, solvedRows.map(function (row) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_SolvedRow__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -4250,9 +4258,7 @@ var Board = function Board() {
       },
       selected: selectedSquares.includes(square)
     });
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
-    onClick: submitGuessClickHandler
-  }, "submit guess"));
+  })));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Board);
 
@@ -4279,7 +4285,11 @@ var SolvedRow = function SolvedRow(_ref) {
     theme = row.theme;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "SolvedRow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, theme), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, squares[0], ", ", squares[1], ", ", squares[2], ", ", squares[3]));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "solved-theme"
+  }, theme), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "solved-words"
+  }, squares[0], ", ", squares[1], ", ", squares[2], ", ", squares[3]));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SolvedRow);
 
@@ -4332,35 +4342,90 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, `.Board{
-  width: 776px;
-  height: 776px;
+___CSS_LOADER_EXPORT___.push([module.id, `body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
+h1{
+  color: teal;
+  font-size: 42px;
+  margin-bottom: 0px;
+}
+
+button {
   border: 2px solid black;
+  font-size: 22px;
+  margin: 20px;
+  padding: 5px 10px;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Board{
+  width: 600px;
+  height: 600px;
+  border: 2px solid black;
+  border-radius: 10px;
   padding: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  background-color: lightslategray;
 }
 
 .Square{
-  width: 170px;
-  height: 170px;
-  margin: 10px;
+  width: 136px;
+  height: 136px;
+  margin: 5px;
   border: 2px solid black;
-  background-color: grey;
-  color: black;
+  border-radius: 5px;
+  background-color: white;
+  color: teal;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .selected-square {
-  background-color: blueviolet;
+  background-color: teal;
+  color: white;
 }
 
 .SolvedRow{
-  width: 756px;
-  margin: 10px;
-  height: 170px;
+  width: 600px;
+  margin: 5px;
+  height: 136px;
   border: 2px solid black;
-}`, "",{"version":3,"sources":["webpack://./src/app/style.css"],"names":[],"mappings":"AAAA;EACE,YAAY;EACZ,aAAa;EACb,uBAAuB;EACvB,aAAa;EACb,aAAa;EACb,mBAAmB;EACnB,eAAe;AACjB;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,YAAY;EACZ,uBAAuB;EACvB,sBAAsB;EACtB,YAAY;AACd;;AAEA;EACE,4BAA4B;AAC9B;;AAEA;EACE,YAAY;EACZ,YAAY;EACZ,aAAa;EACb,uBAAuB;AACzB","sourcesContent":[".Board{\n  width: 776px;\n  height: 776px;\n  border: 2px solid black;\n  padding: 10px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n}\n\n.Square{\n  width: 170px;\n  height: 170px;\n  margin: 10px;\n  border: 2px solid black;\n  background-color: grey;\n  color: black;\n}\n\n.selected-square {\n  background-color: blueviolet;\n}\n\n.SolvedRow{\n  width: 756px;\n  margin: 10px;\n  height: 170px;\n  border: 2px solid black;\n}"],"sourceRoot":""}]);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 40px;
+  background-color: lightseagreen;
+  color: white;
+}
+
+.solved-theme {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.solved-words {
+  font-size: 18px;
+}`, "",{"version":3,"sources":["webpack://./src/app/style.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;EACnB;AACF;;AAEA;EACE,WAAW;EACX,eAAe;EACf,kBAAkB;AACpB;;AAEA;EACE,uBAAuB;EACvB,eAAe;EACf,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE,aAAa;EACb,mBAAmB;AACrB;;AAEA;EACE,aAAa;EACb,sBAAsB;EACtB,mBAAmB;AACrB;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,aAAa;EACb,aAAa;EACb,mBAAmB;EACnB,eAAe;EACf,gCAAgC;AAClC;;AAEA;EACE,YAAY;EACZ,aAAa;EACb,WAAW;EACX,uBAAuB;EACvB,kBAAkB;EAClB,uBAAuB;EACvB,WAAW;EACX,eAAe;EACf,aAAa;EACb,uBAAuB;EACvB,mBAAmB;AACrB;;AAEA;EACE,sBAAsB;EACtB,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,WAAW;EACX,aAAa;EACb,uBAAuB;EACvB,kBAAkB;EAClB,aAAa;EACb,sBAAsB;EACtB,uBAAuB;EACvB,kBAAkB;EAClB,+BAA+B;EAC/B,YAAY;AACd;;AAEA;EACE,eAAe;EACf,iBAAiB;AACnB;;AAEA;EACE,eAAe;AACjB","sourcesContent":["body {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  font-family:Verdana, Geneva, Tahoma, sans-serif\n}\n\nh1{\n  color: teal;\n  font-size: 42px;\n  margin-bottom: 0px;\n}\n\nbutton {\n  border: 2px solid black;\n  font-size: 22px;\n  margin: 20px;\n  padding: 5px 10px;\n}\n\n.button-row {\n  display: flex;\n  flex-direction: row;\n}\n\n.App {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.Board{\n  width: 600px;\n  height: 600px;\n  border: 2px solid black;\n  border-radius: 10px;\n  padding: 10px;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  background-color: lightslategray;\n}\n\n.Square{\n  width: 136px;\n  height: 136px;\n  margin: 5px;\n  border: 2px solid black;\n  border-radius: 5px;\n  background-color: white;\n  color: teal;\n  font-size: 24px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.selected-square {\n  background-color: teal;\n  color: white;\n}\n\n.SolvedRow{\n  width: 600px;\n  margin: 5px;\n  height: 136px;\n  border: 2px solid black;\n  border-radius: 5px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  padding-left: 40px;\n  background-color: lightseagreen;\n  color: white;\n}\n\n.solved-theme {\n  font-size: 30px;\n  font-weight: bold;\n}\n\n.solved-words {\n  font-size: 18px;\n}"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

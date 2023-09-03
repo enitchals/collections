@@ -55,7 +55,7 @@ function getRandomOrder(num){
 
 const Board = () => {
   const [boardData, setBoardData] = useState(dummyData);
-  const [selectedSquares, setSelectedSquares] = useState([])
+  const [selectedSquares, setSelectedSquares] = useState(['1a', '2a', '3a', '4a'])
   const [guesses, setGuesses] = useState([]);
   const [randomOrder, setRandomOrder] = useState(getRandomOrder(16))
 
@@ -106,14 +106,17 @@ const Board = () => {
 
   return (
     <>
-    <div className='Board'>
-      {solvedRows.map(row => <SolvedRow row={row}/>)}
-      {randomOrder.map(index => {
-        const square = unsolvedSquares[index]
-        return <Square text={square} key={square} clickHandler={() => squareClickHandler(square)} selected={selectedSquares.includes(square)}/>
-      })}
-    </div>
-    <button onClick={submitGuessClickHandler}>submit guess</button>
+      <div className='button-row'>
+        <button onClick={submitGuessClickHandler}>submit guess</button>
+        <button onClick={() => setRandomOrder(getRandomOrder(randomOrder.length))}>shuffle</button>
+      </div>
+      <div className='Board'>
+        {solvedRows.map(row => <SolvedRow row={row}/>)}
+        {randomOrder.map(index => {
+          const square = unsolvedSquares[index]
+          return <Square text={square} key={square} clickHandler={() => squareClickHandler(square)} selected={selectedSquares.includes(square)}/>
+        })}
+      </div>
     </>
   )
 }
