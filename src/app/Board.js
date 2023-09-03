@@ -8,29 +8,36 @@ const dummyData = {
   rows: [
     {
       id: 1,
-      theme: 'A',
-      squares: ['1a', '2a', '3a', '4a'],
+      theme: 'Portland Neighborhoods',
+      squares: ['Alberta', 'Hawthorne', 'Laurelhurst', 'Belmont'],
       solved: false
     },
     {
       id: 2,
-      theme: 'B',
-      squares: ['1b', '2b', '3b', '4b'],
+      theme: 'Mt. ______',
+      squares: ['Tabor', 'Hood', 'St. Helens', 'Rainier'],
       solved: false
     },
     {
       id: 3,
-      theme: 'C',
-      squares: ['1c', '2c', '3c', '4c'],
+      theme: 'Portland Parks',
+      squares: ['Washington', 'Mill Ends', 'Forest', 'Waterfront'],
       solved: false
     },
     {
       id: 4,
-      theme: 'D',
-      squares: ['1d', '2d', '3d', '4d'],
+      theme: 'Tallboys',
+      squares: ['PBR', 'Montucky', 'Rolling Rock', 'Schlitz'],
       solved: false
     },
   ]
+}
+
+const categoryColors = {
+  1: '🟩',
+  2: '🟦',
+  3: '🟧',
+  4: '🟪'
 }
 
 function getRandomPosition(num){
@@ -59,8 +66,9 @@ function getRandomOrder(num){
 
 const Board = () => {
   const [boardData, setBoardData] = useState(dummyData);
-  const [selectedSquares, setSelectedSquares] = useState(['1a', '2a', '3a', '4a'])
+  const [selectedSquares, setSelectedSquares] = useState([])
   const [guesses, setGuesses] = useState([]);
+  const [guessSquares, setGuessSquares] = useState([])
   const [randomOrder, setRandomOrder] = useState(getRandomOrder(16))
   const [solvedRows, setSolvedRows] = useState([])
 
@@ -87,6 +95,19 @@ const Board = () => {
     }
   }
 
+  const recordGuess = () => {
+    const newGuessSquares = [];
+    guesses.forEach(guess => {
+      boardData.rows.forEach((row) => {
+        if (row.squares.includes(guess)){
+          newGuessSquares.push(categoryColors[row.id])
+        }
+      })
+    })
+    setGuesses(guesses.concat([selectedSquares]));
+    setGuessSquares(guessSquares.concat([newGuessSquares]))
+  }
+
   const submitGuessClickHandler = () => {
     let maxCollection = 0;
     const index = boardData.rows.findIndex(row => {
@@ -101,11 +122,11 @@ const Board = () => {
     if (index !== -1) {
       setCategorySolved(index);
       setSelectedSquares([]);
-      setGuesses(guesses.concat([selectedSquares]));
+      recordGuess();
       setRandomOrder(getRandomOrder(randomOrder.length-4));
       setSolvedRows(solvedRows.concat(boardData.rows[index]))
     } else {
-      setGuesses(guesses.concat([selectedSquares]));
+      recordGuess();
       window.alert(`You got ${maxCollection} correct!`)
     }
     console.log(boardData)
