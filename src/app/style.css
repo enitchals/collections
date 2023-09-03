@@ -60,11 +60,17 @@ button:hover {
   border-radius: 5px;
   background-color: white;
   color: lightslategray;
-  font-size: 24px;
+  font-size: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  flex-wrap: wrap;
+  overflow-wrap:break-word;
+}
+
+.Square > div {
+  min-width: 0;
 }
 
 .Square:hover {
