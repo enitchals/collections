@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.css';
 import Square from './Square';
 import SolvedRow from './SolvedRow';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 
 const dummyData = {
   id: 1,
+  author: 'Ellen',
   rows: [
     {
       id: 1,
@@ -72,6 +75,15 @@ const Board = () => {
   const [randomOrder, setRandomOrder] = useState(getRandomOrder(16))
   const [solvedRows, setSolvedRows] = useState([])
 
+  const {id} = useParams();
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/puzzle/${id}`)
+      .then(res => setBoardData(res.data))
+  }, [id]);
+
+  console.log(id)
+
   const unsolvedSquares = getUnsolvedSquares(boardData);
 
   const setCategorySolved = (categoryIndex) => {
@@ -124,7 +136,7 @@ const Board = () => {
       setSelectedSquares([]);
       recordGuess();
       setRandomOrder(getRandomOrder(randomOrder.length-4));
-      setSolvedRows(solvedRows.concat(boardData.rows[index]))
+      setSolvedRows(solvedRows.concat({...boardData.rows[index], index: index+1}))
     } else {
       recordGuess();
       window.alert(`You got ${maxCollection} correct!`)
@@ -141,7 +153,7 @@ const Board = () => {
         <button onClick={() => setRandomOrder(getRandomOrder(randomOrder.length))}>shuffle</button>
       </div>
       <div className='Board'>
-        {solvedRows.map(row => <SolvedRow key={row} row={row}/>)}
+        {solvedRows.map((row) => <SolvedRow key={row} row={row}/>)}
         {randomOrder.map(index => {
           const square = unsolvedSquares[index]
           return <Square text={square} key={square} clickHandler={() => squareClickHandler(square)} selected={selectedSquares.includes(square)}/>

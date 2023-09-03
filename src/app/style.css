@@ -12,6 +12,11 @@ h1{
   margin-bottom: 0px;
 }
 
+h2 {
+  color: black;
+  font-size: 32px;
+}
+
 button {
   border: 2px solid black;
   background-color: lightslategray;
@@ -25,6 +30,12 @@ button {
 
 button:hover {
   background-color: orange;
+}
+
+input {
+  font-size: 14px;
+  padding: 3px;
+  padding-left: 5px;
 }
 
 .button-row {
@@ -126,6 +137,66 @@ button:hover {
   font-size: 18px;
 }
 
+.NewPuzzleForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cat-columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 600px;
+}
+
+.cat-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 16%;
+}
+
+.cat-column > input {
+  margin: 10px 0;
+}
+
+.cat-1 > input {
+  border: 2px solid green;
+}
+
+#cat1name{
+  border: 5px solid green;
+  height: 20px;
+}
+
+.cat-2 > input {
+  border: 2px solid dodgerblue;
+}
+
+#cat2name {
+  border: 5px solid dodgerblue;
+  height: 20px;
+}
+
+.cat-3 > input {
+  border: 2px solid orange;
+}
+
+#cat3name {
+  border: 5px solid orange;
+  height: 20px;
+}
+
+.cat-4 > input {
+  border: 2px solid indigo;
+}
+
+#cat4name {
+  border: 5px solid indigo;
+  height: 20px;
+}
+
 @media (max-width: 620px){
 
   .Square{
@@ -154,4 +225,12 @@ button:hover {
     font-size: 14px;
   }
 
+  .cat-columns {
+    flex-direction: column;
+    width: 100vw;
+  }
+
+  .cat-column {
+    width: 100%;
+  }
 }
