@@ -1,0 +1,31 @@
+{
+  "name": "collections",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-dev": "npm run build -- --watch --mode=development",
+    "start-dev": "npm run build-dev & npm run start-server",
+    "start-server": "nodemon server -e html,js,css,scss --ignore public --ignore src",
+    "build": "webpack",
+    "build-prod": "react-scripts build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.22.11",
+    "@babel/preset-env": "^7.22.14",
+    "@babel/preset-react": "^7.22.5",
+    "@babel/register": "^7.22.5",
+    "babel-loader": "^9.1.3",
+    "express": "^4.18.2",
+    "path": "^0.12.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "^5.0.1",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}

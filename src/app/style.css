@@ -1,0 +1,29 @@
+.Board{
+  width: 776px;
+  height: 776px;
+  border: 2px solid black;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Square{
+  width: 170px;
+  height: 170px;
+  margin: 10px;
+  border: 2px solid black;
+  background-color: grey;
+  color: black;
+}
+
+.selected-square {
+  background-color: blueviolet;
+}
+
+.SolvedRow{
+  width: 756px;
+  margin: 10px;
+  height: 170px;
+  border: 2px solid black;
+}
