@@ -5,6 +5,7 @@ import SolvedRow from './SolvedRow';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import GameOverModal from './GameOverModal';
+import GameWonModal from './GameWonModal';
 
 const dummyData = {
   id: 0,
@@ -137,7 +138,9 @@ const Board = () => {
       setSelectedSquares([]);
       recordGuess();
       setRandomOrder(getRandomOrder(randomOrder.length-4));
-      setSolvedRows(solvedRows.concat({...boardData.rows[index], index: index+1}))
+      const newSolvedRows = solvedRows.concat({...boardData.rows[index], index: index+1})
+      setSolvedRows(newSolvedRows);
+      if (newSolvedRows.length === 4) setModal('game-won')
     } else {
       recordGuess();
       window.alert(`You got ${maxCollection} correct!`)
@@ -160,6 +163,7 @@ const Board = () => {
   return (
     <>
       {modal === 'game-over' && <GameOverModal closeModal={closeModalHandler}/>}
+      {modal === 'game-won' && <GameWonModal closeModal={closeModalHandler}/>}
       <div>#{id} by {boardData.author}</div>
       <div className='button-row'>
         <button onClick={submitGuessClickHandler}>submit</button>
