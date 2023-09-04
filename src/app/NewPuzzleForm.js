@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const NewPuzzleForm = () => {
   const [formData, setFormData] = useState({
+    author: '',
     cat1name: '',
     cat1A: '',
     cat1B: '',
@@ -60,8 +61,8 @@ const NewPuzzleForm = () => {
       ]
     }
     console.log(newPuzzle)
-    axios.post('http://localhost:3000/create', newPuzzle)
-      .then(response => window.location.replace(`http://localhost:8080/${response.data.id}`))
+    axios.post('https://collections-db-25b3859e87bd.herokuapp.com/create', newPuzzle)
+      .then(response => window.location.replace(`https://playcollections.online/${response.data.id}`))
       .catch(err => {
           console.error(err);
       });
@@ -70,6 +71,10 @@ const NewPuzzleForm = () => {
   return (
     <div className='NewPuzzleForm'>
       <h2>Create New Puzzle</h2>
+      <div>
+        Author:&nbsp;&nbsp;
+        <input id="author" placeholder='Author Name' onChange={inputChangeHandler}/>
+      </div>
       <div className='cat-columns'>
         <div className='cat-column cat-1'>
           <input id="cat1name" placeholder='Category 1 Name' onChange={inputChangeHandler}/>

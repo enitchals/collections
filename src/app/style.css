@@ -222,6 +222,11 @@ input {
   height: 20px;
 }
 
+#author {
+  border: 5px solid black;
+  height: 20px;
+}
+
 @media (max-width: 620px){
 
   .Square{

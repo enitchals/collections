@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 const dummyData = {
-  id: 1,
+  id: 0,
   author: 'Ellen',
   rows: [
     {
@@ -79,8 +79,8 @@ const Board = () => {
 
   useEffect(() => {
     if (!id) return;
-    axios.get(`http://localhost:3000/puzzle/${id}`)
-      .then(res => setBoardData(res.data))
+    axios.get(`https://collections-db-25b3859e87bd.herokuapp.com/puzzle/${id}`)
+    .then(res => setBoardData(res.data))
   }, [id]);
 
   console.log(id)
@@ -157,6 +157,7 @@ const Board = () => {
 
   return (
     <>
+      <div>#{id} by {boardData.author}</div>
       <div className='button-row'>
         <button onClick={submitGuessClickHandler}>submit</button>
         <button onClick={() => setRandomOrder(getRandomOrder(randomOrder.length))}>shuffle</button>
