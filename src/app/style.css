@@ -1,9 +1,11 @@
 body {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
-  background-color: aliceblue;
+  background-image: linear-gradient(rgb(255,179,186), rgb(255,223,186), rgb(255,255,186), rgb(186,255,201), rgb(186,225,255), rgb(255,179,186));
 }
 
 h1{
@@ -18,10 +20,10 @@ h2 {
 }
 
 button {
-  border: 2px solid black;
-  background-color: lightslategray;
+  border: 2px solid rgb(124,150,170);
+  background-color: rgb(186,225,255);
+  color: rgb(124,150,170);
   font-weight: bold;
-  color: white;
   border-radius: 5px;
   font-size: 22px;
   margin: 20px;
@@ -29,13 +31,16 @@ button {
 }
 
 button:hover {
-  background-color: orange;
+  color: rgb(186,225,255);
+  background-color: rgb(124,150,170);
 }
 
 input {
   font-size: 14px;
   padding: 3px;
   padding-left: 5px;
+  width: 150px;
+  border: 2px solid rgb(124,150,170);
 }
 
 .button-row {
@@ -49,7 +54,8 @@ input {
 }
 
 .highlight-button {
-  background-color: darkred;
+  background-color: rgb(124,150,170);
+  color: rgb(186,225,255);
 }
 
 .remaining-guesses {
@@ -64,7 +70,7 @@ input {
 .pip-mistake{
   width: 18px;
   height: 18px;
-  border: 2px solid darkred;
+  border: 2px solid rgb(170,119,124);
   border-radius: 18px;
   background-color: white;
 }
@@ -72,9 +78,9 @@ input {
 .pip-remaining{
   width: 18px;
   height: 18px;
-  border: 2px solid darkred;
+  border: 2px solid rgb(170,119,124);
   border-radius: 18px;
-  background-color: darkred;
+  background-color: rgb(255,179,186);
 }
 
 .App {
@@ -84,8 +90,8 @@ input {
 }
 
 .Board{
-  width: 600px;
-  height: 600px;
+  width: 520px;
+  height: 520px;
   border: 2px solid black;
   border-radius: 10px;
   padding: 10px;
@@ -94,17 +100,17 @@ input {
   justify-content: space-between;
   align-content: space-around;
   flex-wrap: wrap;
-  background-color: lightslategray;
+  background-color: aliceblue;
 }
 
 .Square{
-  width: 136px;
-  height: 136px;
+  width: 116px;
+  height: 116px;
   margin: 5px;
   border: 2px solid black;
   border-radius: 5px;
   background-color: white;
-  color: lightslategray;
+  color: black;
   font-size: 20px;
   display: flex;
   justify-content: center;
@@ -119,47 +125,33 @@ input {
 }
 
 .Square:hover {
-  background-color: crimson;
-  color: white;
+  background-color: rgb(186,225,255);
 }
 
 .selected-square {
-  background-color: darkred;
+  background-color: rgb(124,150,170);
   color: white;
 }
 
 .selected-square:hover {
-  background-color: darkred;
+  background-color: rgb(124,150,170);
   color: white;
 }
 
 .SolvedRow{
-  width: 600px;
+  width: 520px;
   margin: 5px;
-  height: 136px;
-  border: 2px solid black;
+  height: 116px;
+  background-color: white;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding-left: 40px;
   color: white;
-}
-
-.row-1 {
-  background-color: green;
-}
-
-.row-2 {
-  background-color: dodgerblue;
-}
-
-.row-3 {
-  background-color: orange;
-}
-
-.row-4 {
-  background-color: indigo;
+  border: 2px solid rgb(124,150,170);
+  color: rgb(124,150,170);
+  background-color: aliceblue;
 }
 
 .solved-theme {
@@ -181,60 +173,30 @@ input {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 600px;
+  padding: 20px;
 }
 
 .cat-column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 16%;
+  width: 20%;
 }
 
 .cat-column > input {
   margin: 10px 0;
 }
 
-.cat-1 > input {
-  border: 2px solid green;
-}
-
-#cat1name{
-  border: 5px solid green;
+.cat-name {
+  border: 5px solid rgb(124,150,170);
   height: 20px;
-}
-
-.cat-2 > input {
-  border: 2px solid dodgerblue;
-}
-
-#cat2name {
-  border: 5px solid dodgerblue;
-  height: 20px;
-}
-
-.cat-3 > input {
-  border: 2px solid orange;
-}
-
-#cat3name {
-  border: 5px solid orange;
-  height: 20px;
-}
-
-.cat-4 > input {
-  border: 2px solid indigo;
-}
-
-#cat4name {
-  border: 5px solid indigo;
-  height: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 #author {
-  border: 5px solid black;
+  border: 5px solid rgb(124,150,170);
   height: 20px;
-  margin-bottom: 15px;
 }
 
 .modal {
@@ -293,6 +255,19 @@ input {
   cursor: pointer;
 }
 
+@media (max-width: 760px){
+  .cat-columns {
+    flex-direction: column;
+    width: 100vw;
+    background-color: transparent;
+  }
+
+  .cat-column {
+    width: 100%;
+  }
+
+}
+
 @media (max-width: 620px){
 
   .Square{
@@ -319,15 +294,6 @@ input {
 
   .solved-words {
     font-size: 14px;
-  }
-
-  .cat-columns {
-    flex-direction: column;
-    width: 100vw;
-  }
-
-  .cat-column {
-    width: 100%;
   }
 
   .button-section {

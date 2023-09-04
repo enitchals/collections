@@ -74,28 +74,28 @@ const NewPuzzleForm = () => {
       <input id="author" placeholder='Author Name' onChange={inputChangeHandler}/>
       <div className='cat-columns'>
         <div className='cat-column cat-1'>
-          <input id="cat1name" placeholder='Category 1 Name' onChange={inputChangeHandler}/>
+          <div className='name-input-container'><input id="cat1name" className="cat-name" placeholder='Category 1 Name' onChange={inputChangeHandler}/></div>
           <input id="cat1A" placeholder='Category 1 Word 1' onChange={inputChangeHandler}/>
           <input id="cat1B" placeholder='Category 1 Word 2' onChange={inputChangeHandler}/>
           <input id="cat1C" placeholder='Category 1 Word 3' onChange={inputChangeHandler}/>
           <input id="cat1D" placeholder='Category 1 Word 4' onChange={inputChangeHandler}/>
         </div>
         <div className='cat-column cat-2'>
-          <input id="cat2name" placeholder='Category 2 Name' onChange={inputChangeHandler}/>
+        <div className='name-input-container'><input id="cat2name" className="cat-name" placeholder='Category 2 Name' onChange={inputChangeHandler}/></div>
           <input id="cat2A" placeholder='Category 2 Word 1' onChange={inputChangeHandler}/>
           <input id="cat2B" placeholder='Category 2 Word 2' onChange={inputChangeHandler}/>
           <input id="cat2C" placeholder='Category 2 Word 3' onChange={inputChangeHandler}/>
           <input id="cat2D" placeholder='Category 2 Word 4' onChange={inputChangeHandler}/>
         </div>
         <div className='cat-column cat-3'>
-          <input id="cat3name" placeholder='Category 3 Name' onChange={inputChangeHandler}/>
+        <div className='name-input-container'><input id="cat3name" className="cat-name" placeholder='Category 3 Name' onChange={inputChangeHandler}/></div>
           <input id="cat3A" placeholder='Category 3 Word 1' onChange={inputChangeHandler}/>
           <input id="cat3B" placeholder='Category 3 Word 2' onChange={inputChangeHandler}/>
           <input id="cat3C" placeholder='Category 3 Word 3' onChange={inputChangeHandler}/>
           <input id="cat3D" placeholder='Category 3 Word 4' onChange={inputChangeHandler}/>
         </div>
         <div className='cat-column cat-4'>
-          <input id="cat4name" placeholder='Category 4 Name' onChange={inputChangeHandler}/>
+        <div className='name-input-container'><input id="cat4name" className="cat-name" placeholder='Category 4 Name' onChange={inputChangeHandler}/></div>
           <input id="cat4A" placeholder='Category 4 Word 1' onChange={inputChangeHandler}/>
           <input id="cat4B" placeholder='Category 4 Word 2' onChange={inputChangeHandler}/>
           <input id="cat4C" placeholder='Category 4 Word 3' onChange={inputChangeHandler}/>
