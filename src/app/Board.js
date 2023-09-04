@@ -4,6 +4,7 @@ import Square from './Square';
 import SolvedRow from './SolvedRow';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import GameOverModal from './GameOverModal';
 
 const dummyData = {
   id: 0,
@@ -74,6 +75,7 @@ const Board = () => {
   const [guessSquares, setGuessSquares] = useState([])
   const [randomOrder, setRandomOrder] = useState(getRandomOrder(16))
   const [solvedRows, setSolvedRows] = useState([])
+  const [modal, setModal] = useState('')
 
   const {id} = useParams();
 
@@ -82,8 +84,6 @@ const Board = () => {
     axios.get(`https://collections-db-25b3859e87bd.herokuapp.com/puzzle/${id}`)
     .then(res => setBoardData(res.data))
   }, [id]);
-
-  console.log(id)
 
   const unsolvedSquares = getUnsolvedSquares(boardData);
 
@@ -142,10 +142,8 @@ const Board = () => {
       recordGuess();
       window.alert(`You got ${maxCollection} correct!`)
     }
-    console.log(boardData)
+    if (guesses.length - solvedRows.length > 4) setModal('game-over')
   }
-
-  if (guesses.length - solvedRows.length > 4) window.alert('game over!')
 
   const pips = []
   for (let i=0; i<guesses.length - solvedRows.length; i++){
@@ -155,8 +153,13 @@ const Board = () => {
     pips.push('remaining')
   }
 
+  const closeModalHandler = () => {
+    setModal('')
+  }
+
   return (
     <>
+      {modal === 'game-over' && <GameOverModal closeModal={closeModalHandler}/>}
       <div>#{id} by {boardData.author}</div>
       <div className='button-row'>
         <button onClick={submitGuessClickHandler}>submit</button>

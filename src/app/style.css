@@ -227,6 +227,41 @@ input {
   height: 20px;
 }
 
+.modal {
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+  position: absolute;
+  top:0;
+  left:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: bold;
+  background-color: rgba(0,0,0,.75);
+}
+
+.modal-body {
+  width: 300px;
+  height: 175px;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: bold;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+.close-modal {
+  position: relative;
+  top: 0;
+  right: 0;
+}
+
 @media (max-width: 620px){
 
   .Square{
