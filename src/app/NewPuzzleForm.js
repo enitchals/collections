@@ -71,10 +71,7 @@ const NewPuzzleForm = () => {
   return (
     <div className='NewPuzzleForm'>
       <h2>Create New Puzzle</h2>
-      <div>
-        Author:&nbsp;&nbsp;
-        <input id="author" placeholder='Author Name' onChange={inputChangeHandler}/>
-      </div>
+      <input id="author" placeholder='Author Name' onChange={inputChangeHandler}/>
       <div className='cat-columns'>
         <div className='cat-column cat-1'>
           <input id="cat1name" placeholder='Category 1 Name' onChange={inputChangeHandler}/>

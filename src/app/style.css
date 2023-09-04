@@ -43,6 +43,15 @@ input {
   flex-direction: row;
 }
 
+.button-section {
+  display: flex;
+  flex-direction: row;
+}
+
+.highlight-button {
+  background-color: darkred;
+}
+
 .remaining-guesses {
   display: flex;
   flex-direction: row;
@@ -96,7 +105,7 @@ input {
   border-radius: 5px;
   background-color: white;
   color: lightslategray;
-  font-size: 22px;
+  font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -225,6 +234,7 @@ input {
 #author {
   border: 5px solid black;
   height: 20px;
+  margin-bottom: 15px;
 }
 
 .modal {
@@ -272,6 +282,15 @@ input {
   white-space: pre-line;
 }
 
+.create-button {
+  margin: 5px;
+}
+
+.create-button:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 @media (max-width: 620px){
 
   .Square{
@@ -308,4 +327,18 @@ input {
   .cat-column {
     width: 100%;
   }
+
+  .button-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    margin: 5px;
+  }
+
+  .remaining-guesses {
+    margin: 5px 0px 15px 0px;
+  }
+
 }

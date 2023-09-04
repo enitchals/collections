@@ -166,13 +166,15 @@ const Board = () => {
       {modal === 'game-over' && <GameOverModal closeModal={closeModalHandler} results={guessSquares} id={id}/>}
       {modal === 'game-won' && <GameWonModal closeModal={closeModalHandler} results={guessSquares} id={id}/>}
       <div>#{id} by {boardData.author}</div>
-      <div className='button-row'>
-        <button onClick={submitGuessClickHandler}>submit</button>
-        <button onClick={() => setRandomOrder(getRandomOrder(randomOrder.length))}>shuffle</button>
+      <div className='create-button' onClick={() => window.location.replace(`https://playcollections.online/#/create`)}>create your own puzzle</div>
+      <div className='button-section'>
+        <div className='button-row'>
+          <button className={selectedSquares.length === 4 ? 'highlight-button' : ''} onClick={submitGuessClickHandler}>submit</button>
+          <button onClick={() => setRandomOrder(getRandomOrder(randomOrder.length))}>shuffle</button>
+        </div>
         <div className='remaining-guesses'>
           {pips.map(status => <div className={`pip-${status}`}></div>)}
         </div>
-        <button onClick={() => window.location.replace(`https://playcollections.online/#/create`)}>create</button>
       </div>
       <div className='Board'>
         {solvedRows.map((row) => <SolvedRow key={row} row={row}/>)}
