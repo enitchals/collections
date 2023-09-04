@@ -193,7 +193,8 @@ const Board = () => {
       {modal === 'message-correct-2' && <MessageModal closeModal={closeModalHandler} message='2 of 4 matching'/>}
       {modal === 'message-correct-3' && <MessageModal closeModal={closeModalHandler} message='3 of 4 matching!'/>}
       <div>#{id} by {boardData.author}</div>
-      <div className='create-button' onClick={() => window.location.replace(`https://playcollections.online/#/create`)}>create your own puzzle</div>
+      <a href="https://playcollections.online/#/create" className='create-button'>create your own puzzle</a>
+      <a href="https://playcollections.online" className='create-button'>view all puzzles</a>
       <div className='button-section'>
         <div className='button-row'>
           <button className={selectedSquares.length === 4 ? 'highlight-button' : ''} onClick={submitGuessClickHandler}>submit</button>

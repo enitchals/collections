@@ -8,6 +8,14 @@ body {
   background-image: linear-gradient(rgb(255,179,186), rgb(255,223,186), rgb(255,255,186), rgb(186,255,201), rgb(186,225,255), rgb(255,179,186));
 }
 
+a {
+  color: black;
+}
+
+a:visited{
+  color: black;
+}
+
 h1{
   color: black;
   font-size: 42px;
@@ -16,7 +24,7 @@ h1{
 
 h2 {
   color: black;
-  font-size: 32px;
+  font-size: 24px;
 }
 
 button {
@@ -169,6 +177,26 @@ input {
   align-items: center;
 }
 
+.main-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.public-checkbox {
+  height: 25px;
+  width: 25px;
+}
+
+.main-input-label {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
 .cat-columns {
   display: flex;
   flex-direction: row;
@@ -264,6 +292,21 @@ input {
 
   .cat-column {
     width: 100%;
+  }
+
+  .main-input {
+    flex-direction: column;
+  }
+
+  .main-input-label {
+    justify-content: center;
+    padding: 0px;
+    margin: -10px;
+    margin-top: 5px;
+  }
+
+  .public-checkbox {
+    margin-top: 20px;
   }
 
 }

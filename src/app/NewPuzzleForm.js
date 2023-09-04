@@ -4,7 +4,9 @@ import axios from 'axios';
 
 const NewPuzzleForm = () => {
   const [formData, setFormData] = useState({
+    public: null,
     author: '',
+    title: '',
     cat1name: '',
     cat1A: '',
     cat1B: '',
@@ -29,8 +31,12 @@ const NewPuzzleForm = () => {
 
   const inputChangeHandler = (e) => {
     const newState = {...formData}
-    newState[e.target.id] = e.target.value;
-    setFormData(newState)
+    if (e.target.id === 'public') {
+      newState[e.target.id] = !formData.public
+    } else {
+      newState[e.target.id] = e.target.value;
+    }
+    setFormData(newState);
   }
 
   const createNewPuzzle = () => {
@@ -40,7 +46,9 @@ const NewPuzzleForm = () => {
     })
     if (!formComplete) return;
     const newPuzzle = {
-      author: 'ellen',
+      author: formData.author,
+      title: formData.title,
+      public: formData.public,
       rows: [
         {
           theme: formData.cat1name,
@@ -60,7 +68,6 @@ const NewPuzzleForm = () => {
         },
       ]
     }
-    console.log(newPuzzle)
     axios.post('https://collections-db-25b3859e87bd.herokuapp.com/create', newPuzzle)
       .then(response => window.location.replace(`https://playcollections.online/#/${response.data.id}`))
       .catch(err => {
@@ -71,7 +78,9 @@ const NewPuzzleForm = () => {
   return (
     <div className='NewPuzzleForm'>
       <h2>Create New Puzzle</h2>
-      <input id="author" placeholder='Author Name' onChange={inputChangeHandler}/>
+      <div className='main-input'><div className='main-input-label'>Title:</div><input id="title" className='cat-name' placeholder='Puzzle Title' onChange={inputChangeHandler}/></div>
+      <div className='main-input'><div className='main-input-label'>Author:</div><input id="author" className='cat-name' placeholder='Author Name' onChange={inputChangeHandler}/></div>
+      <div className='main-input'><div className='main-input-label'>List Publicly:</div><input id="public" type="checkbox" className='public-checkbox' onChange={inputChangeHandler}/></div>
       <div className='cat-columns'>
         <div className='cat-column cat-1'>
           <div className='name-input-container'><input id="cat1name" className="cat-name" placeholder='Category 1 Name' onChange={inputChangeHandler}/></div>
