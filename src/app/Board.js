@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import GameOverModal from './GameOverModal';
 import GameWonModal from './GameWonModal';
+import MessageModal from './MessageModal';
 
 const dummyData = {
   id: 0,
@@ -137,11 +138,11 @@ const Board = () => {
 
   const submitGuessClickHandler = () => {
     if (selectedSquares.length !== 4) {
-      window.alert('select four squares to guess')
+      setModal('message-select-four');
       return;
     };
     if (guessHasBeenGuessedAlready()) {
-      window.alert('you\'ve already guessed that')
+      setModal('message-already-guessed');
       return;
     };
     let maxCollection = 0;
@@ -164,7 +165,8 @@ const Board = () => {
       if (newSolvedRows.length === 4) setModal('game-won')
     } else {
       recordGuess(selectedSquares);
-      window.alert(`You got ${maxCollection} correct!`)
+      console.log(`message-correct-${maxCollection}}`)
+      setModal(`message-correct-${maxCollection}`)
     }
     if (guesses.length - solvedRows.length >= 4) setModal('game-over')
   }
@@ -185,6 +187,11 @@ const Board = () => {
     <>
       {modal === 'game-over' && <GameOverModal closeModal={closeModalHandler} results={guessSquares} id={id}/>}
       {modal === 'game-won' && <GameWonModal closeModal={closeModalHandler} results={guessSquares} id={id}/>}
+      {modal === 'message-select-four' && <MessageModal closeModal={closeModalHandler} message='Select four squares to guess'/>}
+      {modal === 'message-already-guessed' && <MessageModal closeModal={closeModalHandler} message='You already guessed that'/>}
+      {modal === 'message-correct-1' && <MessageModal closeModal={closeModalHandler} message='none of these match'/>}
+      {modal === 'message-correct-2' && <MessageModal closeModal={closeModalHandler} message='2 of 4 matching'/>}
+      {modal === 'message-correct-3' && <MessageModal closeModal={closeModalHandler} message='3 of 4 matching!'/>}
       <div>#{id} by {boardData.author}</div>
       <div className='create-button' onClick={() => window.location.replace(`https://playcollections.online/#/create`)}>create your own puzzle</div>
       <div className='button-section'>

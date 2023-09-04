@@ -284,10 +284,10 @@ input {
 
 .create-button {
   margin: 5px;
+  text-decoration: underline;
 }
 
 .create-button:hover {
-  text-decoration: underline;
   cursor: pointer;
 }
 
