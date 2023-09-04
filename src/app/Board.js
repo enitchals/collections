@@ -78,6 +78,7 @@ const Board = () => {
   const {id} = useParams();
 
   useEffect(() => {
+    if (!id) return;
     axios.get(`http://localhost:3000/puzzle/${id}`)
       .then(res => setBoardData(res.data))
   }, [id]);
@@ -146,17 +147,34 @@ const Board = () => {
 
   if (guesses.length - solvedRows.length > 4) window.alert('game over!')
 
+  const pips = []
+  for (let i=0; i<guesses.length - solvedRows.length; i++){
+    if (pips.length<4) pips.push('mistake')
+  }
+  for (let i=guesses.length - solvedRows.length; i<4; i++){
+    pips.push('remaining')
+  }
+
   return (
     <>
       <div className='button-row'>
         <button onClick={submitGuessClickHandler}>submit</button>
         <button onClick={() => setRandomOrder(getRandomOrder(randomOrder.length))}>shuffle</button>
+        <div className='remaining-guesses'>
+          remaining:
+          {pips.map(status => <div className={`pip-${status}`}></div>)}
+        </div>
       </div>
       <div className='Board'>
         {solvedRows.map((row) => <SolvedRow key={row} row={row}/>)}
         {randomOrder.map(index => {
           const square = unsolvedSquares[index]
-          return <Square text={square} key={square} clickHandler={() => squareClickHandler(square)} selected={selectedSquares.includes(square)}/>
+          return <Square
+            text={square}
+            key={square}
+            clickHandler={() => squareClickHandler(square)}
+            selected={selectedSquares.includes(square)}
+            />
         })}
       </div>
     </>

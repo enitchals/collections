@@ -9,6 +9,7 @@ const App = () => {
     <div className='App'>
       <h1>Collections</h1>
       <Routes>
+        <Route path="/" element={<Board/>}/>
         <Route path="/:id" element={<Board/>}/>
         <Route path="/create" element={<NewPuzzleForm/>}/>
       </Routes>

@@ -43,6 +43,31 @@ input {
   flex-direction: row;
 }
 
+.remaining-guesses {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 220px;
+  margin: 20px;
+}
+
+.pip-mistake{
+  width: 18px;
+  height: 18px;
+  border: 2px solid darkred;
+  border-radius: 18px;
+  background-color: white;
+}
+
+.pip-remaining{
+  width: 18px;
+  height: 18px;
+  border: 2px solid darkred;
+  border-radius: 18px;
+  background-color: darkred;
+}
+
 .App {
   display: flex;
   flex-direction: column;
