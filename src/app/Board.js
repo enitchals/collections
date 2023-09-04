@@ -161,7 +161,6 @@ const Board = () => {
         <button onClick={submitGuessClickHandler}>submit</button>
         <button onClick={() => setRandomOrder(getRandomOrder(randomOrder.length))}>shuffle</button>
         <div className='remaining-guesses'>
-          remaining:
           {pips.map(status => <div className={`pip-${status}`}></div>)}
         </div>
       </div>
