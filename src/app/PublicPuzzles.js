@@ -14,7 +14,9 @@ const PublicPuzzles = () => {
   return (
     <div className='Public'>
       <h2>List of Published Puzzles:</h2>
-      {puzzleList.map(puzzle => <a href={`https://playcollections.online/#/${puzzle.id}`} className='puzzle-link'>{`${puzzle.title || `#${puzzle.id}`}`}</a>)}
+      <ul className='puzzle-list'>
+        {puzzleList.map(puzzle => <li><a href={`https://playcollections.online/#/${puzzle.id}`} className='puzzle-link'>{`${puzzle.title || `#${puzzle.id}`}`}</a></li>)}
+      </ul>
     </div>
   )
 }

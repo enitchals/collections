@@ -283,6 +283,11 @@ input {
   cursor: pointer;
 }
 
+.puzzle-list {
+  display: flex;
+  flex-direction: column;
+}
+
 @media (max-width: 760px){
   .cat-columns {
     flex-direction: column;
