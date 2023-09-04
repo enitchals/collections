@@ -62,7 +62,7 @@ const NewPuzzleForm = () => {
     }
     console.log(newPuzzle)
     axios.post('https://collections-db-25b3859e87bd.herokuapp.com/create', newPuzzle)
-      .then(response => window.location.replace(`https://playcollections.online/${response.data.id}`))
+      .then(response => window.location.replace(`https://playcollections.online/#/${response.data.id}`))
       .catch(err => {
           console.error(err);
       });

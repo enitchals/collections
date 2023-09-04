@@ -109,12 +109,13 @@ const Board = () => {
     }
   }
 
-  const recordGuess = () => {
+  const recordGuess = (selectedSquares) => {
     const newGuessSquares = [];
-    guesses.forEach(guess => {
-      boardData.rows.forEach((row) => {
+    selectedSquares.forEach(guess => {
+      boardData.rows.forEach((row,index) => {
         if (row.squares.includes(guess)){
-          newGuessSquares.push(categoryColors[row.id])
+          newGuessSquares.push(categoryColors[index+1])
+          console.log(guess);
         }
       })
     })
@@ -135,17 +136,17 @@ const Board = () => {
     })
     if (index !== -1) {
       setCategorySolved(index);
+      recordGuess(selectedSquares);
       setSelectedSquares([]);
-      recordGuess();
       setRandomOrder(getRandomOrder(randomOrder.length-4));
       const newSolvedRows = solvedRows.concat({...boardData.rows[index], index: index+1})
       setSolvedRows(newSolvedRows);
       if (newSolvedRows.length === 4) setModal('game-won')
     } else {
-      recordGuess();
+      recordGuess(selectedSquares);
       window.alert(`You got ${maxCollection} correct!`)
     }
-    if (guesses.length - solvedRows.length > 4) setModal('game-over')
+    if (guesses.length - solvedRows.length >= 4) setModal('game-over')
   }
 
   const pips = []
@@ -162,8 +163,8 @@ const Board = () => {
 
   return (
     <>
-      {modal === 'game-over' && <GameOverModal closeModal={closeModalHandler}/>}
-      {modal === 'game-won' && <GameWonModal closeModal={closeModalHandler}/>}
+      {modal === 'game-over' && <GameOverModal closeModal={closeModalHandler} results={guessSquares} id={id}/>}
+      {modal === 'game-won' && <GameWonModal closeModal={closeModalHandler} results={guessSquares} id={id}/>}
       <div>#{id} by {boardData.author}</div>
       <div className='button-row'>
         <button onClick={submitGuessClickHandler}>submit</button>
@@ -171,6 +172,7 @@ const Board = () => {
         <div className='remaining-guesses'>
           {pips.map(status => <div className={`pip-${status}`}></div>)}
         </div>
+        <button onClick={() => window.location.replace(`https://playcollections.online/#/create`)}>create</button>
       </div>
       <div className='Board'>
         {solvedRows.map((row) => <SolvedRow key={row} row={row}/>)}
