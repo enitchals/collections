@@ -123,7 +123,27 @@ const Board = () => {
     setGuessSquares(guessSquares.concat([newGuessSquares]))
   }
 
+  const guessHasBeenGuessedAlready = () => {
+    let guessedAlready = false;
+    guesses.forEach(guess => {
+      let matchingSquares = 0;
+      guess.forEach(square => {
+        if (selectedSquares.includes(square)) matchingSquares++
+      })
+      if (matchingSquares === 4) guessedAlready = true;
+    })
+    return guessedAlready;
+  }
+
   const submitGuessClickHandler = () => {
+    if (selectedSquares.length !== 4) {
+      window.alert('select four squares to guess')
+      return;
+    };
+    if (guessHasBeenGuessedAlready()) {
+      window.alert('you\'ve already guessed that')
+      return;
+    };
     let maxCollection = 0;
     const index = boardData.rows.findIndex(row => {
       let collection = 0;
